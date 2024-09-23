@@ -1,0 +1,9 @@
+<nav class="navMenu">
+    <a *ngIf="role === ' '" href="/register" id="registration" style="float:none">Sign up</a>
+    <a *ngIf="role === ' '" href="/login" id="login" style="float:none">Login</a>
+    
+    <a *ngIf="role === 'user'" href="/" style="float:none">Home</a>
+    <a *ngIf="role === 'user'" href="/user-profile" id="profile" style="float:none">Profile</a>
+    <a *ngIf="role === 'user'" href="/" id="signout" (click)="signout()" style="float:none">Sign out</a>
+
+</nav>

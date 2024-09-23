@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+
+            <!--Header-->
+            <div class="header gradient-blue">
+                <div class="row d-flex justify-content-center">
+                    <h3 class="text-white mb-1 mt-1 font-weight-bold">Register</h3>
+                </div>
+            </div>
+
+            <div style="padding: 5%; margin: auto;">
+                <form *ngIf="!registrationCompleted; else mailSentMessage">
+                    <div class="row d-flex mt-4">
+                        <div class="col-md-6">
+                            <label>
+                                <input type="text" name="email" [(ngModel)]="email" required="required">
+                                <span class="keep_hovered">Email</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row d-flex mt-4">
+                        <div class="col-md-6">
+                            <label>
+                                <input type="password" name="password" [(ngModel)]="password" required="required">
+                                <span class="keep_hovered">Password</span>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                <input type="password" name="confirm" [(ngModel)]="confirmPassword" required="required">
+                                <span class="keep_hovered">Confirm Password</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row d-flex mt-4">
+                        <div class="col-md-6">
+                            <label>
+                                <input type="text" name="firstname" [(ngModel)]="firstName" required="required">
+                                <span class="keep_hovered">First Name</span>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                <input type="text" name="lastname" [(ngModel)]="lastName" required="required">
+                                <span class="keep_hovered">Last Name</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row d-flex">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <button (click)="register()" [disabled]="!contentIsValid()" class="btn btn-blue btn-rounded" style="width: 100%;">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <div *ngIf="responseMessage.length != 0"><b>{{responseMessage}}</b></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #mailSentMessage>
+    <p>Verification link sent to email!</p>
+  </ng-template>

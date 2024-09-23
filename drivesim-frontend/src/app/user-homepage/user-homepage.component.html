@@ -1,0 +1,125 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-3">
+            <div class="row" *ngIf="!loadUserFailed">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <p class="card-text">Hello {{ userInfo.firstName }}!</p>
+                        <p class="card-text">
+                            {{ userInfo.gems }}
+                            <span class="gem-icon">
+                                <img src="../../assets/gem.png" style="width: 15px;" alt="Gem" />
+                            </span>
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <!-- Header -->
+                <div class="header gradient-blue">
+                    <div class="row d-flex justify-content-center">
+                        <h3 class="text-white mb-1 mt-1 font-weight-bold">Generation parameters</h3>
+                    </div>
+                </div>
+
+                <div style="padding: 5%; margin: auto;">
+                    <form>
+                        <!-- Image Upload -->
+                        <div class="row d-flex mt-4">
+                            <div class="col-md-12">
+                                <label>
+                                    <input type="file" name="imageUpload" required="required" (change)="onFileSelected($event)">
+                                    <span class="keep_hovered">Upload Image</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Wheel Angle and Speed -->
+                        <div class="row d-flex mt-4">
+                            <div class="col-md-6">
+                                <label>
+                                    <input type="number" name="wheelAngle" required="required" [(ngModel)]="angle">
+                                    <span class="keep_hovered">Wheel Angle (deg)</span>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>
+                                    <input type="number" name="speed" required="required" [(ngModel)]="speed">
+                                    <span class="keep_hovered">Speed (m/s)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Crop Image Checkbox -->
+                        <div class="row d-flex mt-4">
+                            <div class="col-md-6">
+                                <label>
+                                    <input type="checkbox" name="cropImage" required="required" [(ngModel)]="cropImage">
+                                    <span class="keep_hovered">Crop Image</span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>
+                                    <input type="number" name="frameNumber" required="required" [(ngModel)]="frameNumber">
+                                    <span class="keep_hovered">Frame Number</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Model Size Radio Buttons -->
+                        <span style="color:#9e9e9e; font-size:16px">Model Size</span>
+                        <div class="row d-flex mt-4">
+                            <div class="col-md-4">
+                                <input type='radio' id='small' checked='checked' name='radio' class="small_option" value="SMALL" [(ngModel)]="modelSize">
+                                <label for='small'>Small</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type='radio' id='medium' name='radio' class="medium_option" value="MEDIUM" [(ngModel)]="modelSize" checked>
+                                <label for='medium'>Medium</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type='radio' id='large' name='radio' class="large_option" value="LARGE" [(ngModel)]="modelSize">
+                                <label for='large'>Large</label>
+                            </div>
+                        </div>
+
+                        <!-- Generate Button -->
+                        <div class="row d-flex mt-4">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <span *ngIf="validate()">Cost: {{ calculateGemCost() }} </span>
+                                <span *ngIf="validate()" class="gem-icon">
+                                    <img src="../../assets/gem.png" style="width: 15px;" alt="Gem" />
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <button (click)="generate()" [disabled]="!validate()" class="btn btn-blue btn-rounded" style="width: 100%;">Generate</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div>{{errorMsg}}</div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 25px;">
+                <!-- Generate Button -->
+                <div class="row d-flex mt-4">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <button (click)="getResults()" class="btn btn-blue btn-rounded" style="width: 100%;">Results</button>
+                    </div>
+                </div>
+                <!-- Image Container -->
+                <div class="image-container" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; margin-bottom: 20px;">
+                    <img [src]="currentImage" alt="Generated Frame" *ngIf="currentImage" style="max-width: 100%; height: auto;" />
+                    <div>{{resultErrorMessage}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

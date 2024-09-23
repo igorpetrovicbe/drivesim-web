@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+
+            <!--Header-->
+            <div class="header gradient-blue">
+                <div class="row d-flex justify-content-center">
+                    <h3 class="text-white mb-1 mt-1 font-weight-bold">Login</h3>
+                </div>
+            </div>
+
+            <div style="padding: 5%; margin: auto;">
+                <div class="col-md-16">
+                    <label>
+                        <input type="text" name="email" [(ngModel)]="email" required="required" id="email">
+                        <span class="keep_hovered">Email</span>
+                    </label>
+                </div>
+                <div class="col-md-16">
+                    <label>
+                        <input type="password" name="password" [(ngModel)]="password" required="required" id="pass">
+                        <span class="keep_hovered">Password</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row d-flex">
+                <div class="col-md-8"></div>
+                <div class="col-md-3">
+                    <button (click)="login()" [disabled]="!contentIsValid()" class="btn btn-blue btn-rounded" style="width: 100%;" id="loginBtn">Login</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

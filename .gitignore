@@ -185,3 +185,4 @@ fabric.properties
 .idea
 
 drivesim-generator/generated_images/
+package-lock.json

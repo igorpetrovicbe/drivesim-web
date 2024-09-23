@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <!--Header-->
+                <div class="header gradient-blue">
+                    <div class="row d-flex justify-content-center">
+                        <h3 class="text-white mb-1 mt-1 font-weight-bold">User Profile</h3>
+                    </div>
+                </div>
+
+                <div style="padding: 5%; margin: auto">
+                    <form #form="ngForm">
+                        <div class="row d-flex mt-4">
+                            <div class="col-md-6">
+                                <label>
+                                    <input
+                                        type="text"
+                                        name="firstname"
+                                        [(ngModel)]="user.firstName"
+                                        required="required"
+                                    />
+                                    <span class="keep_hovered">First Name</span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>
+                                    <input
+                                        type="text"
+                                        name="lastname"
+                                        [(ngModel)]="user.lastName"
+                                        required="required"
+                                    />
+                                    <span class="keep_hovered">Last Name</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <button
+                                    (click)="changeInfo()"
+                                    [disabled]="!contentIsValid() || !form.dirty"
+                                    class="btn btn-blue btn-rounded"
+                                    style="width: 100%"
+                                >
+                                    Change Info
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div style="color: #08d" *ngIf="responseMessage.length != 0">
+                        <b>{{ responseMessage }}</b>
+                    </div>
+                    <div style="color: red" *ngIf="errorMessage.length != 0">
+                        <b>{{ errorMessage }}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
